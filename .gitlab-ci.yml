@@ -1,0 +1,9 @@
+image: registry.gitlab.com/sebastians90/docker-hspec:latest
+
+ex2:
+  script:
+    - cd ex2
+    - runhaskell Tests.hs
+  only:
+    changes:
+      - ex2/*.{hs,lhs}
