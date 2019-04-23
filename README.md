@@ -8,4 +8,4 @@
 
 | Sheet | Max Points | Achieved Points |
 | ----- | ---------- | --------------- |
-| 1     |            |                 |
+| 1     | 2          | 2               |
