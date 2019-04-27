@@ -30,7 +30,11 @@ isBlank x = all isBLANK x
 -- c)
 
 shift :: Int -> Char -> Char
-shift = undefined
+shift x y
+      | isUpper y = toUpper(chr(((ord y + x - 65) `mod` 26)+65))
+      | x<0 = toUpper(chr(((ord y - x*(-1) - 65) `mod` 26) + 65))
+      | otherwise = y
+
 
 msg :: String
 msg = "MHILY LZA ZBHL XBPZXBL MVYABUHL HWWPBZ JSHBKPBZ "
