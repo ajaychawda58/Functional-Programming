@@ -19,8 +19,12 @@ isNum x
 isNumeral :: String -> Bool
 isNumeral a = all isNum a
 
+isBLANK :: Char -> Bool
+isBLANK x = isSpace x
+
 isBlank :: String -> Bool
-isBlank = undefined
+isBlank x = all isBLANK x
+
 
 --------------------------------------------------------------------------------
 -- c)
