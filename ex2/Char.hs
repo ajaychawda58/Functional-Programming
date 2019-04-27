@@ -11,8 +11,13 @@ equal a b = (map toLower a == map toLower b)
 --------------------------------------------------------------------------------
 -- b)
 
+isNum :: Char -> Bool
+isNum x
+    | x `elem` ['0'..'9'] = True
+    | otherwise = False
+
 isNumeral :: String -> Bool
-isNumeral = undefined
+isNumeral a = all isNum a
 
 isBlank :: String -> Bool
 isBlank = undefined
