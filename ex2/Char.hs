@@ -6,7 +6,7 @@ import Data.Char
 -- a)
 
 equal :: String -> String -> Bool
-equal = undefined
+equal a b = (map toLower a == map toLower b)
 
 --------------------------------------------------------------------------------
 -- b)
