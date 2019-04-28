@@ -2,5 +2,22 @@ module Poem (thisOldMan)
 where
 
 thisOldMan :: String
---thisOldMan = undefined
-thisOldMan ="This old man, he played one,\nHe played knick-knack on my thumb;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played two,\nHe played knick-knack on my shoe;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played three,\nHe played knick-knack on my knee;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played four,\nHe played knick-knack on my door;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played five,\nHe played knick-knack on my hive;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played six,\nHe played knick-knack on my sticks;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played seven,\nHe played knick-knack up in heaven;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played eight,\nHe played knick-knack on my gate;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played nine,\nHe played knick-knack on my spine;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home.\n\nThis old man, he played ten,\nHe played knick-knack once again;\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home."
+thisOldMan = 
+    drop 2 (concat (map (\(x, y) -> buildParagraph x y) (mergeList firstLineEndings secondLineEndings)))
+
+firstLinePrefix = "\n\nThis old man, he played "
+firstLineEndings = ["one","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+
+seconLinePrefix = "\nHe played knick-knack "
+secondLineEndings = ["on my thumb","on my shoe", "on my knee", "on my door", "on my hive", "on my sticks", "up in heaven", "on my gate", "on my spine", "once again"]
+
+lastLines = "\nWith a knick-knack paddywhack,\nGive the dog a bone,\nThis old man came rolling home."
+
+buildParagraph :: String -> String -> String
+buildParagraph firstLineEnding secondLineEnding =
+    firstLinePrefix ++ firstLineEnding ++ "," ++ seconLinePrefix ++ secondLineEnding ++ ";" ++ lastLines
+
+-- Zip for string list 
+mergeList :: [String] -> [String] -> [(String, String)]
+mergeList (x:xs) (y:ys) = (x, y) : mergeList xs ys   
+mergeList _ _ = [] 
