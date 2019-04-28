@@ -11,19 +11,13 @@ equal a b = (map toLower a == map toLower b)
 --------------------------------------------------------------------------------
 -- b)
 
-isNum :: Char -> Bool
-isNum x
-    | x `elem` ['0'..'9'] = True
-    | otherwise = False
-
 isNumeral :: String -> Bool
-isNumeral a = all isNum a
-
-isBLANK :: Char -> Bool
-isBLANK x = isSpace x
+isNumeral input = 
+    and (map isDigit input)
 
 isBlank :: String -> Bool
-isBlank x = all isBLANK x
+isBlank input =
+    and (map isSpace input)
 
 
 --------------------------------------------------------------------------------
