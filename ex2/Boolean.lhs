@@ -1,5 +1,7 @@
---There are 4 functions which have functions Bool -> Bool
---some of them are NOT, logical true, logical false and logical identity.
+-- 2.3.a
+-----------------------------------------------
+-- There exist 4 common functions which have functions Bool -> Bool,
+-- which are NOT, logical true, logical false and logical identity.
 
 --usage of not
 
@@ -29,7 +31,10 @@ logicalIdentity x
     | x==True = True
     | x==False = False
 
--- For (Bool,Bool)-> Bool, there are around 4 functions and, or, xor, xnor etc.
+-- 2.3.b
+-----------------------------------------------
+-- For (Bool,Bool)-> Bool, there are many. 
+-- For example, Definitions for 4 common functions AND, OR, XOR, XNOR.
 
 --AND operator usage
 aNNd :: (Bool,Bool) -> Bool
@@ -53,7 +58,10 @@ xnor (x,y)
         | x == False && y == False = True
         | otherwise = False
 
--- For Bool -> Bool -> Bool, we have NOR, NAND and Boolean Implication operators
+-- 2.3.c
+-----------------------------------------------
+-- With function signature of Bool -> Bool -> Bool there exist many functions.
+-- for example we have NOR, NAND and Boolean Implication operators
 
 noR :: Bool -> Bool -> Bool
 noR x y | x == True && y == False = False
@@ -69,7 +77,6 @@ iMp x y | x == True && y == True = True
         | x == True && y == False = False
         | x == False = True
 {-
-
 Boolean implication A implies B simply means "if A is true, 
 then B must be true". This implies that if A isn't true, then B can be anything.
 -}

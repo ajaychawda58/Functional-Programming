@@ -1,0 +1,67 @@
+Answer 2.1.a 
+---------------------------------------
+> insertionSort (7 : (9 : (2 : [])))
+
+==> { definition of insertionSort and list is not empty}
+insert 7 (insertionSort (9 : (2 : [])))
+==> { definition of insertionSort and list is not empty}
+insert 7 (insert 9 (insertionSort(2 : [])))
+==> { definition of insertionSort and list is not empty}
+insert 7 (insert 9 (insert 2 (insertionSort [])))
+==> { definition of insertionSort and list to sort is empty}
+insert 7 (insert 9 (insert 2 []))
+==> { definition of insert and list to insert is empty[]}
+insert 7 (insert 9 (2:[]))
+==> { definition of insert and 9 > 2 } 
+insert 7 (2:(insert 9 []))
+==> { definition of insert and list to insert is empty[]}
+insert 7 (2:(9:[]))
+==> { definition of insert and 7 > 2 } 
+2:(insert 7 (9:[]))
+==> { definition of insert and 7 < 9 } 
+2:(7:(9:[]))
+
+Answer 2.1.b 
+---------------------------------------
+------part-1
+> twice f x = f (f x)
+
+twice (+1) 0 
+==> { definition of twice } 
+(+1)((+1)0)
+==> { application of (+1)} 
+(+1)(1)
+==> { application of (+1)} 
+2
+
+> twice twice (* 2) 1
+==> { definition of twice} 
+(twice(twice (*2) 1))
+==> { definition of twice } 
+(* 2)((* 2)((* 2)((* 2) 1))) 
+==> { application of (* 2)} 
+16
+
+------part-2
+
+twice ("|" ++) ""                         = 2
+2
+twice twice ("|" ++) ""                   = 4
+(2 ^ (2)) 
+twice twice twice ("|" ++) ""             = 16
+(2 ^ (2 ^ (2))) 
+twice twice twice twice ("|" ++) ""       = 65536
+(2 ^ ( 2 ^ (2 ^ 2))) 
+twice (twice twice) ("|" ++) ""           = 16
+(2 ^ 2) ^ 2
+twice twice (twice twice) ("|" ++) ""     = 256
+(2 ^ (2 ^ 2)) ^ 2
+twice (twice (twice twice)) ("|" ++) ""   = 256
+((2 ^ 2) ^ 2 ) ^ 2
+
+There is a pattern based on how we apply the twice function.
+When it is applied from left the count is 2 ^ (count of rest).
+So for {twice twice twice twice ("|" ++) ""}the pattern is (2 ^ ( 2 ^ (2 ^ 2))).
+
+When it is applied from right hand side the count is (count of rest) ^ 2
+So for {twice (twice (twice twice)) ("|" ++) ""}the pattern is ((2 ^ 2) ^ 2 ) ^ 2.
