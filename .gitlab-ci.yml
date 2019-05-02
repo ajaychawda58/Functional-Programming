@@ -7,3 +7,11 @@ ex2:
   only:
     changes:
       - ex2/*.{hs,lhs}
+
+ex3:
+  script:
+    - cd ex3
+    - runhaskell Tests.hs --color
+  only:
+    changes:
+      - ex3/*.{hs,lhs}
