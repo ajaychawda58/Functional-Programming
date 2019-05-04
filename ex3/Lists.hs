@@ -18,7 +18,7 @@ nth :: Integer -> [a] -> Maybe a
 --nth = undefined
 nth _ [] = Nothing
 nth y (x:xs)
-    | (y == 1) = x 
+    | (y == 0) = Just x 
     | otherwise = nth (y-1) xs
 
 remove :: Integer -> [Integer] -> [Integer]
