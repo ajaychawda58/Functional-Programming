@@ -31,6 +31,7 @@ remove x (y: xs)
 --suffixes = tails
 --suffixes [] = [[]]]
 --suffixes (x: xs) = xs: suffixes xs
-suffixes :: [Integer] -> [[Integer]]
 suffixes [] = []
-suffixes (x: xs) = xs: suffixes xs
+suffixes xs = xs: case xs of
+                    [] -> []
+                    _ : xs' -> suffixes xs'
