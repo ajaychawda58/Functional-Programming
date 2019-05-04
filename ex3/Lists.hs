@@ -29,5 +29,5 @@ remove x (y: xs)
 
 suffixes :: [a] -> [[a]]
 --suffixes = tails
-suffixes [] = []
-suffixes (x: xs) = (x: xs): suffixes xs
+suffixes [] = [[]]
+suffixes xs = xs : (suffixes $ tail xs)
