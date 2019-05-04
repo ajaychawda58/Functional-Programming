@@ -27,7 +27,10 @@ remove x (y: xs)
     | otherwise = y : remove x xs
 
 
-suffixes :: [a] -> [[a]]
+--suffixes :: [a] -> [[a]]
 --suffixes = tails
 --suffixes [] = [[]]]
-suffixes (x: xs) = [] : map (x:) (suffixes xs)
+--suffixes (x: xs) = xs: suffixes xs
+suffixes :: [Integer] -> [[Integer]]
+suffixes [] = []
+suffixes (x: xs) = xs: suffixes xs
