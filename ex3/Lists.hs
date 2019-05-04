@@ -30,8 +30,4 @@ remove x (y: xs)
 --suffixes :: [a] -> [[a]]
 --suffixes = tails
 --suffixes [] = [[]]]
---suffixes (x: xs) = xs: suffixes xs
-suffixes [] = []
-suffixes xs = xs: case xs of
-                    [] -> []
-                    _ : xs' -> suffixes xs'
+suffixes (x: xs) = (x: xs): suffixes xs
