@@ -28,4 +28,4 @@ remove x (y: xs)
 
 
 suffixes :: [a] -> [[a]]
-suffixes = undefined
+suffixes = tails
