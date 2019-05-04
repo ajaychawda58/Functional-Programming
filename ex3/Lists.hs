@@ -21,7 +21,11 @@ nth y (x:xs)
     | otherwise = nth (y-1) xs
 
 remove :: Integer -> [Integer] -> [Integer]
-remove = undefined
+remove _ [] = []
+remove x (y: xs)
+    | x == y = remove x xs
+    | otherwise = y : remove x xs
+
 
 suffixes :: [a] -> [[a]]
 suffixes = undefined
