@@ -15,7 +15,6 @@ contains y (x:xs)
 --    | otherwise = False
 
 nth :: Integer -> [a] -> Maybe a
---nth = undefined
 nth _ [] = Nothing
 nth y (x:xs)
     | (y == 0) = Just x 
