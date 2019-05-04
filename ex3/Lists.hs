@@ -17,9 +17,9 @@ contains y (x:xs)
 nth :: Integer -> [a] -> Maybe a
 --nth = undefined
 nth _ [] = Nothing
-nth x (y: xs)
-    | y ==x = Just x
-    | otherwise = nth x y
+nth a (x:xs)
+    | (a == 1) = x 
+    | otherwise = nth (a-1) xs
 
 remove :: Integer -> [Integer] -> [Integer]
 remove = undefined
