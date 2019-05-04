@@ -15,7 +15,11 @@ contains y (x:xs)
 --    | otherwise = False
 
 nth :: Integer -> [a] -> Maybe a
-nth = undefined
+--nth = undefined
+nth :: Integer -> [a] -> Maybe a
+nth _ [] = Nothing
+nth 1 (x: _) = Just x
+nth n (_: xs) = nth (n-1) xs
 
 remove :: Integer -> [Integer] -> [Integer]
 remove = undefined
