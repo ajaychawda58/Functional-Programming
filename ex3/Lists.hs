@@ -2,7 +2,8 @@ module Lists
 where
 
 prod :: [Integer] -> Integer
-prod = undefined
+prod [] = 1
+prod (x:xs) = x * prod xs
 
 contains :: Integer -> [Integer] -> Bool
 contains = undefined
