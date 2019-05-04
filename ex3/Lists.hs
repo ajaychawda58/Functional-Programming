@@ -10,8 +10,8 @@ contains y [] = False
 contains y (x:xs)
     | y == x = True
     | otherwise = contains y xs
---contains x l
---    | x `elem` l = True
+--contains x y
+--    | x `elem` y = True
 --    | otherwise = False
 
 nth :: Integer -> [a] -> Maybe a
