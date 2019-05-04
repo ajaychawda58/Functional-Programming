@@ -27,7 +27,7 @@ remove x (y: xs)
     | otherwise = y : remove x xs
 
 
---suffixes :: [a] -> [[a]]
+suffixes :: [a] -> [[a]]
 --suffixes = tails
---suffixes [] = [[]]]
+suffixes [] = []
 suffixes (x: xs) = (x: xs): suffixes xs
