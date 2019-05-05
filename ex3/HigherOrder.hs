@@ -8,17 +8,12 @@ swap :: (a,b) -> (b,a)
 swap (a,b) = (b,a)
 
 g :: [(a, b)] -> [(b, a)]
---g = undefinedg
-{--g [] = []
---g ((x,y): xs) = (y,x):g xs            
-g [] = []
-g ((a,b):xs) = map swap [(a,b)]
---}
 g xs = map swap xs
 
-expand :: (Integer, a) -> [a] 
-expand (0 , y) = []
-expand (x,y) = y: expand (x-1, y) 
+expand :: (Integer, a) -> [a]
+expand (x, y)
+  | x > 0 = y: expand (x-1, y)
+  |otherwise = []
 
 h :: [(Integer, a)] -> [a]
 h xs = concat (map expand xs)
