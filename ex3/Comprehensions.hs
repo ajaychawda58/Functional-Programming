@@ -9,7 +9,7 @@ f xs= [y | (x,y)<- xs, x == True]
 g :: [(a, b)] -> [(b, a)]
 --g = undefined
 g [] = []
-g xs = [(x,y) | (x,y) <-xs, let p=x,let q=y,let x=q,let y=p]
+g xs = [(p,q) | (x,y) <- xs, p <- [y], q <- [x]]
 
 h :: [(Integer, a)] -> [a]
 --h = undefined

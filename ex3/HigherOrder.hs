@@ -2,7 +2,7 @@ module HigherOrder
 where
 
 f :: [(Bool, a)] -> [a]
-f = undefined
+f xs = map (\(x, y)-> y) (filter (\(x, y) -> x) xs)
 
 swap :: (a,b) -> (b,a)
 swap (a,b) = (b,a)
@@ -16,9 +16,9 @@ g ((a,b):xs) = map swap [(a,b)]
 --}
 g xs = map swap xs
 
-prnt :: (Integer,String) -> String
-prnt (x,y) = concat [y | n<-[0..x-1]]
+expand :: (Integer, a) -> [a] 
+expand (0 , y) = []
+expand (x,y) = y: expand (x-1, y) 
 
 h :: [(Integer, a)] -> [a]
-h = undefined
---h xs = map prnt xs
+h xs = concat (map expand xs)
