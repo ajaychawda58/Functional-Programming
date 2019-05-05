@@ -20,5 +20,5 @@ prnt :: (Integer,String) -> String
 prnt (x,y) = concat [y | n<-[0..x-1]]
 
 h :: [(Integer, a)] -> [a]
---h = undefined
+h = undefined
 --h xs = map prnt xs
