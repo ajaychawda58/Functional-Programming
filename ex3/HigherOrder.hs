@@ -5,7 +5,8 @@ f :: [(Bool, a)] -> [a]
 f = undefined
 
 g :: [(a, b)] -> [(b, a)]
---g = undefined
+--g = undefinedg
+g [] = []
 g ((x,y): xs) = (y,x):g xs
 
 
