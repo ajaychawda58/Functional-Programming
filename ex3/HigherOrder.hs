@@ -16,7 +16,7 @@ g ((a,b):xs) = map swap [(a,b)]
 --}
 g xs = map swap xs
 
-prnt :: (Integer,String) -> String
+prnt :: (Integer,a) -> a
 prnt (x,y) = concat [y | n<-[0..x-1]]
 
 h :: [(Integer, a)] -> [a]
