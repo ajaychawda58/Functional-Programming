@@ -4,10 +4,10 @@ where
 f :: [(Bool, a)] -> [a]
 f = undefined
 
-swap :: (a,b) -> (a,b)
+swap :: (Integer,Integer) -> (Integer,Integer)
 swap (x,y) = (y,x)
 
-g :: [(a, b)] -> [(b, a)]
+g :: [(Integer, Integer)] -> [(Integer, Integer)]
 --g = undefinedg
 --g [] = []
 --g ((x,y): xs) = (y,x):g xs
