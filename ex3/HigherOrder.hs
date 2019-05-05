@@ -5,7 +5,7 @@ f :: [(Bool, a)] -> [a]
 f = undefined
 
 swap :: (a,b) -> (b,a)
-swap (x,y) = (y,x)
+swap (a,b) = (b,a)
 
 g :: [(a, b)] -> [(b, a)]
 --g = undefinedg
