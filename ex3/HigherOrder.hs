@@ -7,7 +7,7 @@ f = undefined
 swap :: (Integer,Integer) -> (Integer,Integer)
 swap (x,y) = (y,x)
 
-g :: [(Integer, Integer)] -> [(Integer, Integer)]
+g :: [(a, b)] -> [(b, a)]
 --g = undefinedg
 --g [] = []
 --g ((x,y): xs) = (y,x):g xs
