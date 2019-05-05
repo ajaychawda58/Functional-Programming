@@ -15,4 +15,5 @@ h :: [(Integer, a)] -> [a]
 --h = undefined
 --h xs = concat[y | (x,y) <- xs, x<-[1..x]]
 --h xs = return.concat $ [y | (x,y) <- xs, x<-[1..x]]
-h xs = [ y | (x,y) <- xs, x<-[1..x]]
+--h xs = [ y | (x,y) <- xs, x<-[1..x]]    -- this one works though
+h xs = map (map read . words) $ lines [y | (x,y) <- xs, x<-[1..x]]
