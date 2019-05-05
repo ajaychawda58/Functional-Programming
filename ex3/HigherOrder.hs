@@ -4,7 +4,7 @@ where
 f :: [(Bool, a)] -> [a]
 f = undefined
 
-swap :: (Integer,Integer) -> (Integer,Integer)
+swap :: (a,b) -> (b,a)
 swap (x,y) = (y,x)
 
 g :: [(a, b)] -> [(b, a)]
