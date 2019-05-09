@@ -15,3 +15,11 @@ ex3:
   only:
     changes:
       - ex3/*.{hs,lhs}
+
+ex4:
+  script:
+    - cd ex4
+    - runhaskell Tests.hs --color
+  only:
+    changes:
+      - ex4/*.{hs,lhs}
