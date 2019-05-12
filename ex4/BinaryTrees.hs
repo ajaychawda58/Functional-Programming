@@ -5,12 +5,18 @@ data Tree elem = Empty | Node (Tree elem) elem (Tree elem)
     deriving (Eq,Show)
 
 left :: Tree a -> Maybe a
---left = undefined
-left (Node Empty a Empty) = Nothing
-left (Node x a Empty) = Just x
+left Empty = Nothing
+left (Node Empty a Empty) = Just a
 left (Node x _ _) = left x
 
-
 reverseTree :: Tree a -> Tree a
---reverseTree = undefined
-reverseTree (Node x y z) = (Node z y x)
+reverseTree Empty = Empty 
+reverseTree (Node x y z) = (Node (reverseTree z) y (reverseTree x))
+
+-- TODO Remove
+inorder :: Tree a -> [a]
+inorder Empty = []
+inorder (Node l x r) = inorder l ++ [x] ++ inorder r
+
+treeTest1 = Node Empty 4 Empty
+treeTest2 = Node (Node (Node Empty 1 Empty) 2 (Node Empty 3 Empty)) 4 (Node (Node Empty 7 Empty) 9 Empty)
