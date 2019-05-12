@@ -21,9 +21,9 @@ data Function
 apply :: Function -> (Rational -> Rational)
 apply (Const r) = \x -> r
 apply Id = \x -> x
-apply (lf :+: rf) = \x -> ((apply lf) x) + (apply rf x) 
-apply (lf :*: rf) = \x -> ((apply lf) x) + (apply rf x) 
-apply (lf :^: po) = \x -> ((apply lf) x) ^^  po
+apply (lf :+: rf) = \x -> (apply lf x) + (apply rf x) 
+apply (lf :*: rf) = \x -> (apply lf x) * (apply rf x) 
+apply (lf :^: po) = \x -> (apply lf x) ^^  po
 apply (lf :.: rf) = \x -> (apply lf) ((apply) rf x) 
 
 --------------------------------------------------------------------------------
