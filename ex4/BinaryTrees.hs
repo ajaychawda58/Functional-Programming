@@ -6,8 +6,8 @@ data Tree elem = Empty | Node (Tree elem) elem (Tree elem)
 
 left :: Tree a -> Maybe a
 --left = undefined
---left (Node EmptyTree EmptyTree EmptyTree) = Nothing
-left (Node EmptyTree a _) = Just a
+left (Node Empty a Empty) = Nothing
+left (Node x a Empty) = Just x
 left (Node x _ _) = left x
 
 
