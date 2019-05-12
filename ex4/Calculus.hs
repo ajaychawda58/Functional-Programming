@@ -34,8 +34,14 @@ derive (Const r) = Const 0
 derive Id = Const 1
 derive (lf :+: rf) = derive lf :+: derive rf
 derive (lf :*: rf) = (lf :*: derive rf) :+: (derive lf :*: rf)
-derive (lf :^: po) = (Const (toRational po)) :*: lf 
+derive (lf :^: po) = (Const (toRational po)) :*: (lf :^: (po-1))  
 derive (lf :.: rf) =  (derive lf :.: rf) :*: derive rf
+{-
+ - (x^3) o (4x)
+ - ((3x^2) o (4x))* 4
+ - 3 * 16 x^2
+ - 192^x2
+ -}
 --------------------------------------------------------------------------------
 -- c)
 
