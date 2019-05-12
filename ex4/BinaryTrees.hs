@@ -12,4 +12,5 @@ left (Node x _ _) = left x
 
 
 reverseTree :: Tree a -> Tree a
-reverseTree = undefined
+--reverseTree = undefined
+reverseTree (Node x y z) = (Node z y x)
