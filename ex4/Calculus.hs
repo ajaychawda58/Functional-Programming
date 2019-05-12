@@ -30,8 +30,12 @@ apply (lf :.: rf) = \x -> (apply lf) ((apply) rf x)
 -- b)
 
 derive :: Function -> Function
-derive = undefined
-
+derive (Const r) = Const 0
+derive Id = Const 1
+derive (lf :+: rf) = derive lf :+: derive rf
+derive (lf :*: rf) = (lf :*: derive rf) :+: (derive lf :*: rf)
+derive (lf :^: po) = (Const (toRational po)) :*: lf 
+derive (lf :.: rf) =  (derive lf :.: rf) :*: derive rf
 --------------------------------------------------------------------------------
 -- c)
 
