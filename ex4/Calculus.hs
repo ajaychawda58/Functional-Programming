@@ -44,10 +44,30 @@ derive (lf :.: rf) =  (derive lf :.: rf) :*: derive rf
  -}
 --------------------------------------------------------------------------------
 -- c)
+size :: Function -> Integer
+size (Const _) = 1
+size Id = 1
+size (f1 :+: f2) = size f1 + size f2
+size (f1 :*: f2) = size f1 + size f2
+size (f1 :^: _) = size f1 + 1
+size (f1 :.: f2) = size f1 + size f2
 
 simplify :: Function -> Function
-simplify = id -- Identity, does not simplify anything. Do something useful here...
-
+simplify Id = Id -- Identity, does not simplify anything. Do something useful here...
+simplify (Const 0 :+: rf) = simplify rf
+simplify (lf :+: Const 0 ) = simplify lf
+simplify (Const 1 :*: rf) = simplify rf
+simplify (lf :*: Const 1 ) = simplify lf
+simplify (Const 1 :^: rf) = Const 1
+simplify (lf :^: 1) = simplify lf
+simplify (lf :^: 0) = Const 1
+simplify (Const a :+: Const b) = Const (a+b)
+simplify (Const a :+: Const b :+: f) = Const (a+b) :+: f
+simplify (Const a :+: Const b :*: f) = Const (a+b) :*: f
+simplify (Const a :*: Const b) = Const (a*b)
+simplify (Id :.: rf) = simplify rf
+simplify (lf :.: Id) = simplify lf
+simplify id  = id 
 -- Hint: The simplify tests first check whether the size for the given examples is
 -- as small as possible. Have a look into the CalculusSpec.hs file, it contains
 -- comments with the expected simplified solution for each example.
