@@ -11,6 +11,7 @@ allFalse = foldl (\accumulative element -> accumulative && not element) True
 
 member :: (Eq a) => a -> [a] -> Bool
 member k = foldl (\ac el-> if ((not ac) && k==el) then True else ac) False 
+--member y ys = foldl (\acc x -> if x==y then True else acc) False ys       --alternate
 
 smallest :: [Int] -> Int
 smallest = foldl (\ac el-> if ac > el then el else ac) (maxBound :: Int) 
