@@ -18,7 +18,7 @@ smallest = foldl (\ac el-> if ac > el then el else ac) (maxBound :: Int)
 
 largest :: [Int] -> Int
 largest = foldl (\ac el-> if ac < el then el else ac) (minBound :: Int) 
--- largest = = foldr1 (\x acc -> if x > acc then x else acc) --alternate
+-- largest = foldr1 (\x acc -> if x > acc then x else acc) --alternate
 
 -- If both recursion schemes are applicable, which one is preferable in terms of running time?
 -- foldl' is tail recursive so foldl' is more space and time efficient than foldr.
