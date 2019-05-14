@@ -15,6 +15,7 @@ member k = foldl (\ac el-> if ((not ac) && k==el) then True else ac) False
 
 smallest :: [Int] -> Int
 smallest = foldl (\ac el-> if ac > el then el else ac) (maxBound :: Int) 
+--smallest = foldr1 (\x acc -> if x < acc then x else acc)  --alternate
 
 largest :: [Int] -> Int
 largest = foldl (\ac el-> if ac < el then el else ac) (minBound :: Int) 
