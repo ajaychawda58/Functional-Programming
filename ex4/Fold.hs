@@ -4,6 +4,7 @@ where
 allTrue :: [Bool] -> Bool
 allTrue = foldl (&&) True
 -- allTrue = foldr (&&) True
+-- allTrue xs = foldl (\acc x -> if x==True then True else False) True xs --alternate
 
 allFalse :: [Bool] -> Bool
 allFalse = foldl (\accumulative element -> accumulative && not element) True
