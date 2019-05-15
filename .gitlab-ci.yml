@@ -23,3 +23,14 @@ ex4:
   only:
     changes:
       - ex4/*.{hs,lhs}
+
+ex5:
+  script:
+    - cd ex5
+    - ghc -Wall Hardware
+    - ghc -Wall BoolMonoids
+    - ghc -Wall MapReduce
+    - runhaskell Tests.hs --color
+  only:
+    changes:
+      - ex5/*.{hs,lhs}
