@@ -4,8 +4,9 @@ import Prelude hiding (and, or)
 
 -- a)
 mapr :: ((a, state) -> (b, state)) -> ([a], state) -> ([b], state)
-mapr = undefined
-
+mapr f ([], state)  = ([], state) 
+mapr f (vals, state)  = 
+    foldr (\e (as, s) -> let (na, ns) = f(e, ns) in (na:as, ns)) ([], state) vals 
 
 -- b)
 data Bit  =  O | I deriving (Eq, Ord, Show)
@@ -22,11 +23,11 @@ xor I I =  O
 
 type Carry = Bit
 halfAdder :: (Bit, Bit) -> (Bit, Carry)
-halfAdder = undefined
+halfAdder (b1, b2) = ((xor b1 b2), (and b1 b2))
 
 fullAdder :: ((Bit, Bit), Carry) -> (Bit, Carry)
-fullAdder = undefined
-
+fullAdder ((b1, b2), c) = (ss, xor sc fc)
+    where (fs, fc) = halfAdder(b1,b2); (ss, sc) = halfAdder(c, fs)
 
 -- c)
 rippleAdder :: ([Bit], [Bit], Carry) -> ([Bit], Carry)
