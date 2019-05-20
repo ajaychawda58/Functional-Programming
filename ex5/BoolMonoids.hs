@@ -27,10 +27,38 @@ instance Monoid Additive where
 -- a)
 -- Please write your newtype and instance definitions here...
 
+-- Out of 16 boolean functions only 4 are associative with identity value
+-- 1. AND
+newtype AndAll = AndAll {fromAndAll :: Bool} deriving (Show)
+instance Monoid AndAll where
+    e = AndAll True
+    (°) (AndAll x) (AndAll y) = AndAll (x && y)
+
+-- 2. OR
+newtype OrAll = OrAll {fromOrAll:: Bool} deriving (Show)
+instance Monoid OrAll where
+    e = OrAll False
+    (°) (OrAll x) (OrAll y) = OrAll (x || y)
+
+-- 3.XOR
+newtype XorAll = XorAll {fromXorAll:: Bool} deriving (Show)
+instance Monoid XorAll where
+    e = XorAll False
+    (°) (XorAll x) (XorAll y) = XorAll (x /= y)
+
+-- 4. NXOR
+newtype NxorAll = NxorAll {fromNxorAll:: Bool} deriving (Show)
+instance Monoid NxorAll where
+    e = NxorAll True
+    (°) (NxorAll x) (NxorAll y) = NxorAll (x == y)
 
 -- b)
 {-
 
 Please write your answer in this multiline comment.
+1. In reduce, it check all values are True. Predefined method : all
+2. In reduce, it check any of the value is True. Predefined method : any
+3. In reduce, it check if the list has even number of True. 
+4. In reduce, it check if the list has even number of False.
 
 -}
