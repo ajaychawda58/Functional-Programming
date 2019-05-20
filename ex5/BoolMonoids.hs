@@ -56,8 +56,8 @@ instance Monoid NxorAll where
 {-
 
 Please write your answer in this multiline comment.
-1. In reduce, it check all values are True. Predefined method : all
-2. In reduce, it check any of the value is True. Predefined method : any
+1. In reduce, it check all values are True. Predefined method : and
+2. In reduce, it check any of the value is True. Predefined method : or
 3. In reduce, it check if the list has even number of True. 
 4. In reduce, it check if the list has even number of False.
 
