@@ -49,8 +49,14 @@ foldm :: (a -> a -> a) -> a -> [a] -> a
 -- b) top-down
 foldmTD :: (a -> a -> a) -> a -> [a] -> a
 --foldmTD = undefined
---foldmTD f e Empty =  e
---foldmTD f e x = do {y <- f e x; foldmTD f y x}
+foldmTD x y [] = y
+foldmTD x y xs = f xs
+  where f [x] = x
+        f xs  = f (g xs)
+        g []         = []
+        g [x]        = [x]
+        g (x1:x2:xs) = x x1 x2 : g xs
+
 
 
 -- c) bottom-up
