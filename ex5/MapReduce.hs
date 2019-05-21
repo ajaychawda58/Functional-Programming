@@ -33,7 +33,8 @@ foldr (+) 0 [1, 2, 3]                   --foldr (+) 0 [1,2,3]
 (+) 1 ((+) 2 ((+) 3 0))                 -- 1 + (2 + (3 + 0 ))
 
 foldm:
-In case of foldm, there is no left associativity or right, it is evaluated using a balanced binary tree.
+In case of foldm, there is no left associativity or right, it is evaluated using a balanced binary tree. The binary tree can be accessed in both ways,
+either from top to bottom or from bottom to up. Whereas in foldr and foldl you can access the list only either by left or right associativity.
 Example,
 foldm (+) 0 [1,2,3,4] is equivalent to [(1+2)+(3+4) + 0]
 It is evaluated like this,
