@@ -50,7 +50,6 @@ foldm :: (a -> a -> a) -> a -> [a] -> a
 -- b) top-down
 foldmTD :: (a -> a -> a) -> a -> [a] -> a
 --foldmTD = undefined
-foldmTD :: (a -> a -> a) -> a -> [a] -> a
 foldmTD p q = f 
   where
     f [] = q
