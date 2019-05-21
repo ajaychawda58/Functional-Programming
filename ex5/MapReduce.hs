@@ -35,7 +35,10 @@ foldr (+) 0 [1, 2, 3]                   --foldr (+) 0 [1,2,3]
 foldm:
 In case of foldm, there is no left associativity or right, it is evaluated using a balanced binary tree.
 Example,
-foldm (+) 0 [1,2,3,4] is equivalent to [(1+2)+(3+4)]
+foldm (+) 0 [1,2,3,4] is equivalent to [(1+2)+(3+4) + 0]
+It is evaluated like this,
+
+TODO
 
 It is of the form:
 foldm :: (a -> a -> a) -> a -> [a] -> a
