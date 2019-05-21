@@ -49,14 +49,15 @@ foldm :: (a -> a -> a) -> a -> [a] -> a
 
 -- b) top-down
 foldmTD :: (a -> a -> a) -> a -> [a] -> a
---foldmTD = undefined
-foldmTD p q = f 
+foldmTD = undefined
+
+
+-- c) bottom-up
+foldmBU :: (a -> a -> a) -> a -> [a] -> a
+--foldmBU = undefined
+foldmBU p q = f 
   where
     f [] = q
     f (x:xs) = x `p` f (g xs)
     g (x:y:zs) = p x y : g zs
     g zs = zs
-
--- c) bottom-up
-foldmBU :: (a -> a -> a) -> a -> [a] -> a
-foldmBU = undefined
