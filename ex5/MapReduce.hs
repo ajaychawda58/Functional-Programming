@@ -39,7 +39,11 @@ Example,
 foldm (+) 0 [1,2,3,4] is equivalent to [(1+2)+(3+4) + 0]
 It is evaluated like this,
 
-TODO
+foldm (+) 0 [1,2,3,4]                               -- foldm (+) 0 [1,2,3,4]
+(+) 1 (foldm (+) 0 [2,3,4])                         -- 1 + foldm (+) 0 [2,3,4]
+((+) 1 2) (foldm (+) 0 [3,4])                       -- (1+2) + foldm (+) 0 [3,4]
+((+) 1 2) ((+) 3 4) (foldm (+) 0 [])                -- (1+2) + (3+4) + foldm (+) 0 []
+((+) 1 2) ((+) 3 4) ((+) 0)                         -- (1+2) + (3+4) + 0
 
 It is of the form:
 foldm :: (a -> a -> a) -> a -> [a] -> a
