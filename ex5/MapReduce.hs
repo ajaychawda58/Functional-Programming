@@ -61,4 +61,4 @@ foldmTD x y xs = f xs
 
 -- c) bottom-up
 foldmBU :: (a -> a -> a) -> a -> [a] -> a
-foldmBU = undefined
+--foldmBU = undefined
