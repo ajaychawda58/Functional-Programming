@@ -34,3 +34,12 @@ ex5:
   only:
     changes:
       - ex5/*.{hs,lhs}
+
+ex6:
+  script:
+    - cd ex6
+    - ghc -Wall Huffman
+    - runhaskell Tests.hs --color
+  only:
+    changes:
+      - ex6/*.{hs,lhs}
