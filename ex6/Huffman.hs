@@ -1,12 +1,13 @@
 module Huffman
 where
 -- feel free to import some useful packages
-
+import Data.List
 -------------------------------------------------------------------------------
 -- Provided data types
 
 infix 1 :-
 data With a b = a :- b
+    deriving (Show)
 
 instance (Eq a) => Eq (With a b) where
     (a :- _) == (b :- _)  =  a == b
@@ -24,7 +25,8 @@ data Bit = O | I
 -- 1) Constructing a frequency table
 
 frequencies :: (Ord char) => [char] -> [With Int char]
-frequencies = undefined
+frequencies text = [(length e :- head e)|e <-gt]
+    where gt = group $ sort text 
 
 
 -------------------------------------------------------------------------------
