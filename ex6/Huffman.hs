@@ -20,7 +20,6 @@ data Tree elem = Leaf elem | Tree elem :^: Tree elem
 data Bit = O | I
     deriving (Show, Eq, Ord)
 
-
 -------------------------------------------------------------------------------
 -- 1) Constructing a frequency table
 
@@ -33,7 +32,7 @@ frequencies text = [(length e :- head e)|e <-gt]
 -- a)
 huffman :: [With Int char] -> Tree char
 huffman freq = t
-    where (r :- t) = huffmanRec (huffCreateAllLeafs freq)
+    where (_ :- t) = huffmanRec (huffCreateAllLeafs freq)
 
 huffmanRec :: [With Int (Tree char)] -> With Int (Tree char)
 huffmanRec (a:[])  = a
@@ -45,21 +44,36 @@ huffCreateAllLeafs freq =  map (\(b :- e) -> (b :- Leaf e)) $ sort freq
 
 -- b)
 englishTree :: Tree Char
-englishTree = undefined
+englishTree = huffman [8 :- 'a',1 :- 'b',3 :- 'c',4 :- 'd',13 :- 'e',2 :- 'f',2 :- 'g',6 :- 'h',7 :- 'i',1 :- 'j',1 :- 'k',4 :- 'l',2 :- 'm',7 :- 'n',8 :- 'o',2 :- 'p',1 :- 'q',6 :- 'r',6 :- 's',9 :- 't',3 :- 'u',1 :- 'v',2 :- 'w',1 :- 'x',2 :- 'y',0 :- 'z']
 -- (Define a Huffman tree that contains the 26 characters from 'a' to 'z', but no capital, whitespace or punctuation)
-
+-- Ans : Using the wikipedia data and converting frequencies of letters in text to int.
 
 -------------------------------------------------------------------------------
 -- 3) Encoding ASCII text
-
 encode :: (Eq char) => Tree char -> [char] -> [Bit]
-encode = undefined
+encode ct text = foldl (\a x -> a ++ (bitsFromChar x codeList)) [] text 
+    where codeList = codes ct 
 
 -- helper function:
 codes :: Tree char -> [(char, [Bit])]
-codes = undefined
+codes a = codes' a []
 
+codes' :: Tree char -> [Bit] -> [(char, [Bit])]
+codes' (Leaf a) res = [(a, res)]
+codes' (l :^: r) res =  le ++ ri
+    where le = appendBit (codes' l res) O
+          ri = appendBit (codes' r res) I
 
+appendBit :: [(char, [Bit])] -> Bit -> [(char, [Bit])]
+appendBit res b =  map (\(c,bs) -> (c,b:bs)) res
+
+-- will remove once map implemented for fast look up
+bitsFromChar :: Eq char => char -> [(char, [Bit])] -> [Bit]
+bitsFromChar _ [] = []
+bitsFromChar k ((c,bs):xs)
+    | (k == c) = bs
+    | otherwise = bitsFromChar k xs
+    
 -------------------------------------------------------------------------------
 -- 4) Decoding a Huffman binary
 
