@@ -28,13 +28,20 @@ frequencies :: (Ord char) => [char] -> [With Int char]
 frequencies text = [(length e :- head e)|e <-gt]
     where gt = group $ sort text 
 
-
 -------------------------------------------------------------------------------
 -- 2) Constructing a Huffman tree
-
 -- a)
 huffman :: [With Int char] -> Tree char
-huffman = undefined
+huffman freq = t
+    where (r :- t) = huffmanRec (huffCreateAllLeafs freq)
+
+huffmanRec :: [With Int (Tree char)] -> With Int (Tree char)
+huffmanRec (a:[])  = a
+huffmanRec ((l1:-t1) : (l2:-t2) : xs) = huffmanRec $ sort (newElement : xs)  
+    where newElement = (l1+l2) :-(t1:^:t2)  
+
+huffCreateAllLeafs :: [With Int char] -> [With Int (Tree char)] 
+huffCreateAllLeafs freq =  map (\(b :- e) -> (b :- Leaf e)) $ sort freq
 
 -- b)
 englishTree :: Tree Char
