@@ -78,8 +78,16 @@ bitsFromChar k ((c,bs):xs)
 -- 4) Decoding a Huffman binary
 
 decode :: Tree char -> [Bit] -> [char]
-decode = undefined
+decode ct et = decode' ct et ct []
 
+decode' :: Tree char -> [Bit] -> Tree char -> [char] ->[char]
+decode' orig encod (Leaf a) res
+    | null encod = res ++ [a] 
+    | otherwise = decode' orig encod orig (res ++ [a]) 
+decode' orig encod (l :^: r) res
+    | f == I = decode' orig (tail encod) r res 
+    | f == O = decode' orig (tail encod) l res 
+    where f = head encod
 
 -------------------------------------------------------------------------------
 -- Some test data.
