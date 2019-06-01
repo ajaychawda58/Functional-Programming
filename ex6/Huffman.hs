@@ -35,6 +35,7 @@ huffman freq = t
     where (_ :- t) = huffmanRec (huffCreateAllLeafs freq)
 
 huffmanRec :: [With Int (Tree char)] -> With Int (Tree char)
+huffmanRec ([])  = error "Need atleast one element since text contains at least two different characters."
 huffmanRec (a:[])  = a
 huffmanRec ((l1:-t1) : (l2:-t2) : xs) = huffmanRec $ sort (newElement : xs)  
     where newElement = (l1+l2) :-(t1:^:t2)  
