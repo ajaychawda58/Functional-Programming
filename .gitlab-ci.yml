@@ -43,3 +43,11 @@ ex6:
   only:
     changes:
       - ex6/*.{hs,lhs}
+
+ex7:
+  script:
+    - cd ex7
+    - ghc -Wall Streams
+  only:
+    changes:
+      - ex7/*.{hs,lhs}
