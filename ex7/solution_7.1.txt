@@ -1,0 +1,91 @@
+Exercise 7.1 
+
+part - a
+--------
+
+    f y && allT f t ==> allT f (insert y t) 
+    1. Base case, t == Leaf
+
+     allT f (insert y Leaf)
+    ==> {definition of insert }
+     allT f (Node Leaf y Leaf)
+    ==> {definition of allT}
+     f Leaf && f y && f Leaf
+    ==> {definition of AllT}
+     True && f y && f Leaf
+    ==> {re arrangement }
+     f y && f Leaf
+    ==> {allT for Leaf since t == Leaf }
+     f y && allT f t
+     LHS ==> RHS
+    ===========
+
+    2. Induction case, t == Node l e r
+    a. case y < e
+
+     allT f (insert y (Node l e r)
+    ==> {definition of insert }
+     allT f (Node (insert y l) e r)
+    ==> {definition of allT}
+    f e && allT f (insert y l) && allT f r
+    ==> { induction assumption:f y && allT f t ==> allT f (insert y t) }
+    f e && f y && allT f l && allT f r
+    ==> {re arrange}
+    f y && f e && allT f l && allT f r
+    ==> {definition of allT}
+    f y && allT (Node l e)
+    ==> {allT for Leaf since t == Node l e r}
+    f y && allT t 
+
+     LHS ==> RHS
+    ===========
+    a. case y > e
+     same as previus case
+part - b
+--------
+isST t ==> isST (insert y t)
+
+1. Base case t == Leaf
+
+ isST(insert y Leaf)
+==>(defintion of insert)
+ isSearchTree (Node Leaf y Leaf)
+==>(defintion of isST)
+ allT (\x -> x<=e) Leaf && allT (\x -> x>e) Leaf && isST Leaf && isST Leaf
+==> {definition of allT}
+ True && True && True && True
+==> {simplification of &&}
+ True
+==> {definition of isST Leaf}
+ isST leaf
+==> {substitute Leaf with t }
+ isST t 
+
+ LHS ==> RHS
+===========
+
+2. Induction case, t == Node l e r
+ isST(insert y (Node l e r))
+==>(defintion of insert in case of y <= e)
+ isST(Node (insert y l) e r)
+==>(defintion of isST)
+ allT (\x -> x<=e) (insert y l) && allT (\x -> x>e) r && isST (insert y l) && isST r
+==>(indcution assumption: isST (insert y l) ==> isST l)
+ allT (\x -> x<=e) (insert y l) && allT (\x -> x>e) r && isST l && isST r
+==>(7.1 a : f y && allT f t ==> allT f (insert y t))
+ (\x -> x<=e) y && allT (\x -> x>e) l &&  && allT (\x -> x>e) r && isST l && isST r
+==>(assumption we took initially: y <= e))
+ True && allT (\x -> x>e) l && allT (\x -> x>e) r && isST l && isST r
+==>(definition of isST)
+ True && isST(Node l e r)
+==>(replacing (Node l e r) with t)
+ isST t
+
+ LHS ==> RHS
+===========
+
+
+Exercise 7.2 
+
+part - a
+--------

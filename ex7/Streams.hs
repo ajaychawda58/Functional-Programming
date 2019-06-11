@@ -36,13 +36,19 @@ instance Show elem => Show (Stream elem) where
 ---------------------------------------------------------------------
 -- a)
 repeat :: a -> Stream a
-repeat = undefined
+repeat x = xs' where xs' = x .: xs'
+-- recursive solution
+-- repeat x = x .: repeat x 
+
+-- Trying with Functor
+-- instance Functor Stream where
+--     fmap f (Cons x xs) = (Cons (f x) (fmap f xs)) 
 
 map :: (a -> b) -> (Stream a -> Stream b)
-map = undefined
+map f (Cons x xs) = (Cons (f x) (map f xs)) 
 
 zip :: (a -> b -> c) -> (Stream a -> Stream b -> Stream c)
-zip = undefined
+zip f (Cons x xs) (Cons y ys) = (Cons (f x y) (zip f xs ys)) 
 
 
 ---------------------------------------------------------------------
@@ -50,19 +56,20 @@ zip = undefined
 -- As a small service, here are all functions you need to implement
 -- for the Num typeclass. Replace 'undefined' with something useful.
 instance Num elem => Num (Stream elem) where
-    (+)         = undefined
-    (-)         = undefined
-    (*)         = undefined
-    negate      = undefined
-    abs         = undefined
-    signum      = undefined
-    fromInteger = undefined
+    (+) (Cons x xs) (Cons y ys) = (x+y) .: xs+ys 
+    (-) (Cons x xs) (Cons y ys) = x-y .: xs-ys 
+    (*) (Cons x xs) (Cons y ys) = x*y .: xs*ys 
+    negate (Cons x xs) = (-x) .: (negate xs)  
+    abs (Cons x xs) =  abs x.: (abs xs)  
+    signum (Cons x xs)  = (signum x) .: (signum xs)
+    fromInteger x = (fromInteger x) .: (fromInteger x)
 
 
 ---------------------------------------------------------------------
 -- c)
 take :: Integer -> Stream elem -> [elem]
-take = undefined
+take 0 _   = []
+take n (Cons x xs)  = x : (take (n-1) xs) 
 
 
 ---------------------------------------------------------------------
@@ -74,7 +81,8 @@ diff s = tail s - s
 
 -- The function you should implement:
 sum :: Num elem => Stream elem -> Stream elem
-sum = undefined
+sum x = 0 .: sum' x 0 where sum' (Cons x xs) acc = x + acc .: (sum' xs (x + acc))
+-- todo : not looking good! Make it elegent
 
 -- Specification: diff (sum s) = s and head (sum s) = 0
 
