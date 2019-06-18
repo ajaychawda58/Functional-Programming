@@ -8,3 +8,5 @@ main :: IO ()
 main = do
     args <- getArgs
     putStrLn (unwords args)
+{-
+-}
