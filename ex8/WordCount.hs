@@ -29,3 +29,17 @@ main = do
     let b=countWords x
     let c=countBytes x
     putStrLn ((show (a)) ++ " " ++ (show (b)) ++ " " ++ (show (c))++ " " ++ fileName ++ "\n")
+    
+    
+{-
+For multiple arguments, this is used
+main = do
+    args <- getArgs
+    progName <- getProgName
+    putStrLn " The arguments are : "
+    mapM putStrLn getArgs
+    putStrLn " The program name is : "
+    putStrLn progName
+
+I could not do it for multiple files.
+-}
