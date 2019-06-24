@@ -5,9 +5,7 @@ where
 import System.Environment
 
 main :: IO ()
---main = do
---    args <- getArgs
---    putStrLn "To be done..."
+
 countLines :: String -> Int
 countLines str = length.lines $ str
 
@@ -17,29 +15,31 @@ countWords str=length.words $ str
 countBytes :: String -> Int
 countBytes str=length $ str
 
-conv :: [Char] -> String
-conv s = s
+prettyPrint l w b f =
+    putStrLn ("\t" ++ show l  ++ "\t" ++ show w ++ "\t" ++ show b ++ "\t" ++ f)
 
-main = do
-    [args] <- getArgs
-    contents <- readFile args
-    let x=conv contents
-    let fileName=conv args
-    let a=countLines x
-    let b=countWords x
-    let c=countBytes x
-    putStrLn ((show (a)) ++ " " ++ (show (b)) ++ " " ++ (show (c))++ " " ++ fileName ++ "\n")
-    
-    
-{-
-For multiple arguments, this is used
+countFile :: [Char] -> IO (Int, Int, Int)
+countFile fileName =
+    do
+    content <- readFile fileName
+    let l = countLines content
+    let w = countWords content
+    let b = countBytes content
+    prettyPrint l w b fileName
+    return (l , w , b)
+
+validateInput args
+    | len == 0 = error "No argument provided"
+    | otherwise = return ()
+    where len = length args
+
 main = do
     args <- getArgs
-    progName <- getProgName
-    putStrLn " The arguments are : "
-    mapM putStrLn getArgs
-    putStrLn " The program name is : "
-    putStrLn progName
-
-I could not do it for multiple files.
--}
+    validateInput args
+    contents <- readFile (head args)
+    res <- mapM (\x -> countFile x) args
+    let (a, b, c) = foldl (\(l, w, b) (xl, xw, xb) -> (l+xl, w+xw , b+xb)) (0, 0 ,0) res
+    case length args of
+        1 -> return ()
+        _ -> prettyPrint a b c "total"
+ 
