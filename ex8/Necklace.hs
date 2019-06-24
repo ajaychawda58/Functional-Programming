@@ -32,7 +32,9 @@ toList last = do
 
 -- a)
 rotate :: NecklaceRef elem -> IO (NecklaceRef elem)
-rotate = undefined
+rotate last = do
+    Cons _ next <- readIORef last
+    return next
 
 -- Test your implementation in ghci:
 -- example >>= rotate >>= toList (should be [3,5,2])
@@ -42,8 +44,13 @@ rotate = undefined
 
 -- b)
 append :: NecklaceRef elem -> NecklaceRef elem -> IO ()
-append = undefined
-
+append a b = do
+    Cons _ anext <- readIORef a
+    Cons _ bnext <- readIORef b
+    faa <- readIORef anext
+    fbb <- readIORef bnext
+    writeIORef anext fbb
+    writeIORef bnext faa
 
 -- Use this function to test your implementation in ghci:
 -- appendCheck example example2 (should be ([7,11,2,3,5],[2,3,5,7,11]))
