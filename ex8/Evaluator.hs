@@ -25,5 +25,12 @@ toss :: Expr
 toss = Lit 0 :?: Lit 1
 
 -- Your task: Implement this function
+--evalN :: (Applicative f) => Expr -> f Integer
 evalN :: Expr -> [Integer]
-evalN = undefined
+-- evalN = undefined
+evalN (Lit i)     = pure i
+evalN (e1 :+: e2) = pure (+)  <*> evalN e1 <*> evalN e2
+evalN (e1 :*: e2) = pure (*)  <*> evalN e1 <*> evalN e2
+evalN (Div e1 e2) = pure div  <*> evalN e1 <*> evalN e2
+evalN (e1 :?: e2)   = evalN e1 ++ evalN e2
+
