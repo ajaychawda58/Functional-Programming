@@ -51,6 +51,7 @@ append a b = do
     fbb <- readIORef bnext
     writeIORef anext fbb
     writeIORef bnext faa
+    return (anext,bnext)
 
 -- Use this function to test your implementation in ghci:
 -- appendCheck example example2 (should be ([7,11,2,3,5],[2,3,5,7,11]))
