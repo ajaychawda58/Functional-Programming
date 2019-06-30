@@ -38,13 +38,11 @@ cons a b = case b of
 .
 -}
 -- c)
-check :: Sequ a -> Maybe a
-check seq = case seq of
-  Nil    -> Nothing
-  One y ys -> Just y
-  Z   ys -> fst <$> check ys
+check :: Sequ elem -> (a, Sequ elem)
+check a = case view a of
+	Empty     -> error "Empty Head"
+	Cons x xs -> (x, xs)
 
 head :: Sequ elem -> elem
 --head = undefined
-head Nil = error "Head empty"
-head 
+head = fst.check
