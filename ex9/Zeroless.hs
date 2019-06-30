@@ -38,6 +38,16 @@ cons a b = case b of
 .
 -}
 -- c)
+check :: Sequ elem -> Maybe elem
+check a = case a of
+  Nil    -> Nothing
+  One y ys -> Just y
+  Two   ys -> fst <$> check ys
 
 head :: Sequ elem -> elem
 --head = undefined
+head a = case check a of
+  Just y  -> y
+  Nothing -> error "Empty Head"
+
+{-(<$>) :: Functor f => (a->b) -> f a -> f b-}
