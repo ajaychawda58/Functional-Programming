@@ -11,7 +11,10 @@ data Sequ elem
 
 -- a)
 size :: Sequ elem -> Integer
-size = undefined
+--size = undefined
+size (Nil) = 0
+size (One n) = 1 + 2*size n
+size (Two a n) = 2 + 2*size n
 
 -- b)
 cons :: elem -> Sequ elem -> Sequ elem
