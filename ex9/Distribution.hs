@@ -19,15 +19,26 @@ failureProb, successProb :: Prob
 failureProb = 1/1000000 -- 0.0001%
 successProb = 1 - failureProb
 
+addDist :: Dist (Integer ->Integer -> Integer)
+addDist = D[((\x y -> 0), failureProb),((+), successProb)]
+
 faultyAdd :: Integer -> Integer -> Dist Integer
-faultyAdd x y = undefined
+faultyAdd x y = fmap (\f -> f x y) addDist
 
 
 -- b)
 gauss :: Integer -> Dist Integer
-gauss = undefined
+gauss 0 = pure 0
+gauss n = do
+    res <- gauss(n-1)
+    faultyAdd n res
 
 
 -- c)
 fib :: Integer -> Dist Integer
-fib = undefined
+fib 0 = pure 0
+fib 1 = pure 1
+fib n = do
+    res <- fib (n-2)
+    res1 <- fib (n-1)
+    faultyAdd res res1
