@@ -1,0 +1,35 @@
+a. (Functor f) => f (a,b) -> f (b,a)
+    foo :: (Functor f) => f (a, b) -> f (b, a)
+    foo x = fmap (\(a, b) -> (b, a)) x
+
+b. (Functor f) => f (f (a,b)) -> f (f (a,b,b,a))
+    foo :: (Functor f) => f (f (a,b)) -> f (f (a,b,b,a))
+    foo x = fmap (\f -> (fmap (\(a,b) -> (a,b,b,a) )f)) x
+
+c) (Functor f,Functor g)=>f a -> g b -> f (g (b,a)) 
+    fooC:: (Functor f,Functor g) => f a -> g b -> f (g (b,a)) 
+    fooC f g = fmap (\a -> (fmap (\b -> (b, a)) g)) f
+
+d) (Applicative f) = >f a -> f b -> f (a,b)
+    fooD::(Applicative f) => f a -> f b -> f (a,b)
+    fooD x y = (\a b -> (a,b)) <$> x <*> y
+
+e) (Applicativef)=>a-> b-> c-> d)-> f a-> f b-> f c-> f d) 
+    fooE :: (Applicative f) => (a->b->c->d) -> (f a->f b->f c->f d) 
+    fooE f fa fb fc = f <$> fa <*> fb <*> fc
+
+f) (Applicative f , Applicative g) => a -> f (g a)
+    fooF::(Applicative f , Applicative g) => a -> f (g a)
+    fooF a = pure (pure a)
+
+g) (Monad m) => a -> m (m a) 
+    fooG :: (Monad m) => a -> m (m a) 
+    fooG a = return (return a)
+
+h) (Monad m)=>m a -> m (m a)
+    fooH:: (Monad m)=>m a -> m (m a)
+    fooH a = return a
+
+i) (Monad m) => m (m (m a)) -> m a
+    fooI::(Monad m) => m (m (m a)) -> m a
+    fooI a = a >>= id >>= id  
