@@ -26,22 +26,10 @@ cons :: elem -> Sequ elem -> Sequ elem
 --cons = undefined
 cons a b = case b of
   Nil    -> One a Nil
-  One y ys -> Two $ cons (Pair a y) ys
-  Two (One y ys) -> One $ (Two $ cons (Pair a y ) ys)
-{-
-0
-1
-2
-11
-12
-21
-22
-111
-112
-121
-.
-.
--}
+  One y ys -> Two a y ys
+  Two y z ys -> One a ys
+
+
 -- c)
 check :: Sequ elem -> Maybe elem
 check a = case a of
