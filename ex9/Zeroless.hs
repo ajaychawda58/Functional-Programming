@@ -12,7 +12,6 @@ data Sequ elem
 -- a)
 size :: Sequ elem -> Integer
 --size = undefined
-size :: Sequ elem -> Integer
 size = x where
     x :: Sequ elem -> Integer
     x s = case s of
