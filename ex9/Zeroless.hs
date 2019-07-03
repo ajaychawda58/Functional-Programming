@@ -12,9 +12,14 @@ data Sequ elem
 -- a)
 size :: Sequ elem -> Integer
 --size = undefined
-size (Nil) = 0
-size (One n) = 1 + 2*size n
-size (Two a n) = 2 + 2*size n
+size :: Sequ elem -> Integer
+size = x where
+    x :: Sequ elem -> Integer
+    x s = case s of
+        Nil -> 0
+        One _ xs -> 1+2*x xs
+        Two _ _ xs -> 2+2*x xs
+
 
 -- b)
 cons :: elem -> Sequ elem -> Sequ elem
