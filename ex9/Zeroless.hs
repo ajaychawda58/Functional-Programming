@@ -42,7 +42,6 @@ cons a b = case b of
 .
 .
 -}
---cons will add element while head will show the first element
 -- c)
 check :: Sequ elem -> Maybe elem
 check a = case a of
@@ -56,4 +55,3 @@ head a = case check a of
   Just y  -> y
   Nothing -> error "Empty Head"
 
-{-(<$>) :: Functor f => (a->b) -> f a -> f b-}
