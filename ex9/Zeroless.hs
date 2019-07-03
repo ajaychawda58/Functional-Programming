@@ -43,7 +43,7 @@ check :: Sequ elem -> Maybe elem
 check a = case a of
   Nil    -> Nothing
   One y ys -> Just y
-  Two   ys -> fst <$> check ys
+  Two y x ys -> Just y
 
 head :: Sequ elem -> elem
 --head = undefined
